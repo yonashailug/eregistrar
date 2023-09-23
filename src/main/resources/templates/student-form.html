@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Student Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <h2 th:if="${student.studentId == null}">Register New Student</h2>
+    <h2 th:if="${student.studentId != null}">Update Student Details</h2>
+
+    <form th:action="@{/eregistrar/save}" th:object="${student}" method="post">
+        <input type="hidden" th:field="*{studentId}" />
+
+        <div class="form-group">
+            <label for="studentNumber">Student Number:</label>
+            <input type="text" class="form-control" id="studentNumber" th:field="*{studentNumber}" placeholder="000-61-0001" required>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="middleName">Middle Name:</label>
+            <input type="text" class="form-control" id="middleName" th:field="*{middleName}">
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cgpa">CGPA:</label>
+            <input type="text" class="form-control" id="cgpa" th:field="*{cgpa}">
+        </div>
+
+        <div class="form-group">
+            <label for="enrollmentDate">Enrollment Date:</label>
+            <input type="date" class="form-control" id="enrollmentDate" th:field="*{enrollmentDate}" required>
+        </div>
+
+        <div class="form-group">
+            <label>International:</label><br>
+            <input type="radio" th:field="*{isInternational}" value="Yes"> Yes<br>
+            <input type="radio" th:field="*{isInternational}" value="No"> No<br>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+</body>
+</html>
